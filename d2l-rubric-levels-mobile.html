@@ -119,6 +119,17 @@
 			[hidden] {
 				display: none !important;
 			}
+			.short-text {
+				display: none;
+			}
+			@media (max-width: 300px) {
+				.short-text {
+					display: inline-block;
+				}
+				.full-text {
+					display: none;
+				}
+			}
 		</style>
 		<div class="levels-container">
 			<div class="levels" role="tablist">
@@ -138,7 +149,8 @@
 					>
 						<d2l-icon hidden$="[[!_isAssessedLevel(item, assessedLevelHref)]]"class="check-icon" icon='d2l-tier1:check'></d2l-icon>
 						<div hidden$="[[_isAssessedLevel(item, assessedLevelHref)]]" class$="[[_getLevelTextClassName(index, selected)]]">
-							[[item.properties.name]]
+							<span class="full-text">[[item.properties.name]]</span>
+							<span class="short-text">[[_getTruncatedLevelName(item)]]</span>
 						</div>
 					</div>
 				</template>
@@ -294,6 +306,21 @@
 					return item.properties.name;
 				}
 			},
+
+			_getTruncatedLevelName: function(item) {
+				var levels = this.levelEntities;
+				var levelName = item.properties.name;
+				var prevFirstWord = null;
+				for (var i = 0; i < levels.length; i++) {
+					var curFW = levels[i].properties.name.split(' ')[0];
+					if (prevFirstWord && prevFirstWord !== curFW) {
+						return levelName;
+					}
+					prevFirstWord = curFW;
+				}
+				// Remove the first word since it is common to all levels
+				return levelName.split(' ').slice(1).join(' ');
+			}
 
 		});
 	</script>
