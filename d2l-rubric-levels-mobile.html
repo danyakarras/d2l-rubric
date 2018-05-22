@@ -150,7 +150,7 @@
 						<d2l-icon hidden$="[[!_isAssessedLevel(item, assessedLevelHref)]]"class="check-icon" icon='d2l-tier1:check'></d2l-icon>
 						<div hidden$="[[_isAssessedLevel(item, assessedLevelHref)]]" class$="[[_getLevelTextClassName(index, selected)]]">
 							<span class="full-text">[[item.properties.name]]</span>
-							<span class="short-text">[[_getTruncatedLevelName(item)]]</span>
+							<span class="short-text">[[_getLevelName(item, _truncatedLevelNames, index)]]</span>
 						</div>
 					</div>
 				</template>
@@ -196,6 +196,11 @@
 				levelEntities: {
 					type: Array,
 					notify: true
+				},
+
+				_truncatedLevelNames: {
+					type: Array,
+					value: null
 				},
 
 				score: {
@@ -255,6 +260,7 @@
 				}
 				this.total = entity.properties.total;
 				this.levelEntities = entity.getSubEntitiesByClass(this.HypermediaClasses.rubrics.level);
+				this._truncatedLevelNames = this._getTruncatedLevelNames(this.levelEntities);
 			},
 
 			_getLevelClassName: function(index, selected, level, assessedLevelHref) {
@@ -307,19 +313,26 @@
 				}
 			},
 
-			_getTruncatedLevelName: function(item) {
-				var levels = this.levelEntities;
-				var levelName = item.properties.name;
+			_getTruncatedLevelNames: function(levels) {
+				var tln = [];
 				var prevFirstWord = null;
 				for (var i = 0; i < levels.length; i++) {
-					var curFW = levels[i].properties.name.split(' ')[0];
-					if (prevFirstWord && prevFirstWord !== curFW) {
-						return levelName;
+					var curName = levels[i].properties.name.split(' ');
+					if (curName.length <= 1 || prevFirstWord && prevFirstWord !== curName[0]) {
+						return null;
 					}
-					prevFirstWord = curFW;
+					tln.push(curName.slice(1).join(' '));
+					prevFirstWord = curName[0];
 				}
-				// Remove the first word since it is common to all levels
-				return levelName.split(' ').slice(1).join(' ');
+				return tln;
+			},
+
+			_getLevelName: function(levelEntity, shortLevelNames, index) {
+				if (shortLevelNames) {
+					return shortLevelNames[index];
+				} else {
+					return levelEntity.properties.name;
+				}
 			}
 
 		});
