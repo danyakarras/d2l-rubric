@@ -37,5 +37,9 @@
     "polymer-cli": "^1.6.0",
     "python-shell": "^0.5.0",
     "web-component-tester-istanbul": "^0.10.0"
+  },
+  "dependencies": {
+    "attest": "^2.1.1",
+    "npm": "^6.1.0"
   }
 }
