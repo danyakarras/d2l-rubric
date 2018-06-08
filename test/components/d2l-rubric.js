@@ -5,13 +5,6 @@
 suite('<d2l-rubric>', function() {
 
 	var element, sandbox;
-	function myAsyncFunction(callback) {
-		// 500ms delay before callback
-		setTimeout(function() {
-		  callback(element);
-		}, 500);
-	  }
-
 	suiteSetup(function(done) {
 		sandbox = sinon.sandbox.create();
 		element = fixture('basic');
@@ -46,6 +39,29 @@ suite('<d2l-rubric>', function() {
 			expect(element.assessmentHref).to.be.undefined;
 			expect(element._assessmentEntity).to.be.null;
 			expect(element._score).to.be.null;
+		});
+	});
+
+	suite ('attest runs',function(){
+		test('basic checks',function(){
+			var rules_options = {
+				runOnly: {
+					type: "tags",
+					values: ["wcag2a"]
+					// exclude: ['html-has-lang']
+				  }
+			  }
+			attest.init('wcag2aa', function () {
+				// done();
+			});
+			attest.run(rules_options,function (err, results, done) {
+				// return results
+				// console.log(results.violations[0]);
+				// expect(false).to.be.true;
+				expect(results.violations).to.equal('hi');
+				done();
+			});
+			// console.log(local_results.violations);
 		});
 	});
 
