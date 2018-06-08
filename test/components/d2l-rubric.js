@@ -51,13 +51,10 @@ suite('<d2l-rubric>', function() {
 					// exclude: ['html-has-lang']
 				  }
 			  }
-			attest.init('wcag2aa', function () {
-				// done();
-			});
 			attest.run(rules_options,function (err, results, done) {
-				// return results
-				// console.log(results.violations[0]);
-				// expect(false).to.be.true;
+
+				//need to figure out howto make this pass up to the test
+				//so that it fails
 				expect(results.violations).to.equal('hi');
 				done();
 			});
