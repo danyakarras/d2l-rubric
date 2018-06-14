@@ -43,7 +43,7 @@ suite('<d2l-rubric>', function() {
 	});
 
 	suite ('attest runs',function(){
-		test('basic checks',function(){
+		test('basic checks',function(done){
 			var rules_options = {
 				runOnly: {
 					type: "tags",
@@ -51,13 +51,22 @@ suite('<d2l-rubric>', function() {
 					// exclude: ['html-has-lang']
 				  }
 			  }
-			attest.run(rules_options,function (err, results, done) {
-
-				//need to figure out howto make this pass up to the test
-				//so that it fails
+			//   let my_done = done;
+			attest.run(rules_options).then(function(){
 				expect(results.violations).to.equal('hi');
 				done();
+
 			});
+				// function (err, results) {
+
+			// 	//need to figure out howto make this pass up to the test
+			// 	//so that it fails
+			// 	expect(results.violations).to.equal('hi');
+			// 	done();
+			// 	// my_done();
+			// }.catch(done));
+
+			// console.log('in test');
 			// console.log(local_results.violations);
 		});
 	});
