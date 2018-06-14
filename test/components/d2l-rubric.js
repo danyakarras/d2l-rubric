@@ -43,31 +43,24 @@ suite('<d2l-rubric>', function() {
 	});
 
 	suite ('attest runs',function(){
-		test('basic checks',function(done){
+		// suiteSetup(function (done) {
+		// 	attest.init('wcag2', function () {
+		// 		done();
+		// 	})
+		// });
+		test('basic checks',function(){
 			var rules_options = {
 				runOnly: {
 					type: "tags",
-					values: ["wcag2a"]
-					// exclude: ['html-has-lang']
+					values: ["wcag2a"],
+					exclude: ['html-has-lang']
 				  }
 			  }
-			//   let my_done = done;
-			attest.run(rules_options).then(function(){
-				expect(results.violations).to.equal('hi');
-				done();
-
-			});
-				// function (err, results) {
-
-			// 	//need to figure out howto make this pass up to the test
-			// 	//so that it fails
-			// 	expect(results.violations).to.equal('hi');
-			// 	done();
-			// 	// my_done();
-			// }.catch(done));
-
-			// console.log('in test');
-			// console.log(local_results.violations);
+	
+			return attest.run(rules_options).then(
+				function(results){
+					expect(results.violations.length).to.equal(1);
+				})
 		});
 	});
 
@@ -89,10 +82,11 @@ suite('<d2l-rubric>', function() {
 					done();
 				}
 			}
+			// console.log('2');
 			element.addEventListener('d2l-rubric-entity-changed', waitForLoad);
 			element.href = 'data/rubrics/organizations/text-only/199.json';
-			element.token = 'foozleberries';
-			expect(element._showContent).to.be.false;
+			element.token = 'foozleberries';	
+			expect(element._showContent).to.be.false;	
 		});
 
 		test('check for spinner on page', function() {
