@@ -43,11 +43,7 @@ suite('<d2l-rubric>', function() {
 	});
 
 	suite ('attest runs',function(){
-		// suiteSetup(function (done) {
-		// 	attest.init('wcag2', function () {
-		// 		done();
-		// 	})
-		// });
+
 		test('basic checks',function(){
 			// var rules_options = {
 			// 	runOnly: {
@@ -59,12 +55,15 @@ suite('<d2l-rubric>', function() {
 			let my_res = '_UNSET';
 			return attest.run().then(
 				function(results){
-					// console.log(results.violations);
 					my_res = results;
 					expect(results.violations.length).to.equal(0);
-				}).catch(
+				})
+				.catch(
 					function (err){
-						console.log(my_res);
+						var i;
+						for (i=0; i < my_res.violations.length; i++) {
+							console.log(my_res.violations[i]);
+						}
 						throw err
 					}
 				)
