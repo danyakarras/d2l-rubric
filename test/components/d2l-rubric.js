@@ -49,18 +49,25 @@ suite('<d2l-rubric>', function() {
 		// 	})
 		// });
 		test('basic checks',function(){
-			var rules_options = {
-				runOnly: {
-					type: "tags",
-					values: ["wcag2a"],
-					exclude: ['html-has-lang']
-				  }
-			  }
-	
-			return attest.run(rules_options).then(
+			// var rules_options = {
+			// 	runOnly: {
+			// 		type: "tags",
+			// 		values: ["wcag2a"],
+			// 		exclude: ['html-has-lang']
+			// 	  }
+			//   }
+			let my_res = '_UNSET';
+			return attest.run().then(
 				function(results){
-					expect(results.violations.length).to.equal(1);
-				})
+					// console.log(results.violations);
+					my_res = results;
+					expect(results.violations.length).to.equal(0);
+				}).catch(
+					function (err){
+						console.log(my_res);
+						throw err
+					}
+				)
 		});
 	});
 
@@ -76,13 +83,12 @@ suite('<d2l-rubric>', function() {
 		test('show content after loading', function(done) {
 			element = fixture('basic');
 			function waitForLoad(e) {
-				element.removeEventListener('d2l-rubric-entity-changed', waitForLoad);
-				expect(element._showContent).to.be.true;
 				if (e.detail.entity.getLinkByRel('self').href === 'data/rubrics/organizations/text-only/199.json') {
+					expect(element._showContent).to.be.true;
+					element.removeEventListener('d2l-rubric-entity-changed', waitForLoad);
 					done();
 				}
 			}
-			// console.log('2');
 			element.addEventListener('d2l-rubric-entity-changed', waitForLoad);
 			element.href = 'data/rubrics/organizations/text-only/199.json';
 			element.token = 'foozleberries';	
