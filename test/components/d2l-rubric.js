@@ -45,15 +45,16 @@ suite('<d2l-rubric>', function() {
 	suite ('attest runs',function(){
 
 		test('basic checks',function(){
-			// var rules_options = {
-			// 	runOnly: {
-			// 		type: "tags",
-			// 		values: ["wcag2a"],
-			// 		exclude: ['html-has-lang']
-			// 	  }
-			//   }
+			//disable a few rules that don't apply to our component
+			var rules_options = {
+				"rules":{
+					'html-has-lang':{enabled:false},
+					'landmark-one-main':{enabled:false},
+					'page-has-heading-one':{enabled:false}
+				}
+			}
 			let my_res = '_UNSET';
-			return attest.run().then(
+			return attest.run(rules_options).then(
 				function(results){
 					my_res = results;
 					expect(results.violations.length).to.equal(0);
