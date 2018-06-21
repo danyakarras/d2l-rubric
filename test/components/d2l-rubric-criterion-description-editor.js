@@ -114,4 +114,12 @@ suite('<d2l-rubric-criterion-description-editor>', function() {
 
 		});
 	});
+
+	suite ('Ally Test',function(){
+        suiteSetup(function() {
+            var element = fixture('basic');
+        });
+
+        test('d2l-rubric-criterion-description checks',test_data);
+    });
 });
