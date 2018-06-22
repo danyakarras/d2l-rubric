@@ -3,8 +3,7 @@ node_js: 8
 dist: trusty
 sudo: required
 before_install:
-  - printf "registry=http://agora.dequecloud.com/artifactory/api/npm/attest/\n_authToken=${NPM_TOKEN}\nalways-auth = true\nemail = Dave.Westerveld@d2l.com" > .npmrc
-  - cat .npmrc
+  - printf "registry=http://agora.dequecloud.com/artifactory/api/npm/attest/\n_auth=${NPM_TOKEN}\nalways-auth = true\nemail = Dave.Westerveld@d2l.com" > .npmrc
 before_script:
 - npm run test:lint
 script:
