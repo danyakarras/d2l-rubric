@@ -10,8 +10,8 @@ suite('<d2l-rubric>', function() {
 		element = fixture('basic');
 
 		function waitForLoad(e) {
-			element.removeEventListener('d2l-rubric-entity-changed', waitForLoad);
 			if (e.detail.entity.getLinkByRel('self').href === 'data/rubrics/organizations/text-only/199.json') {
+				element.removeEventListener('d2l-rubric-entity-changed', waitForLoad);
 				done();
 			}
 		}

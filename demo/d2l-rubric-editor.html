@@ -21,9 +21,11 @@
 
 	<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
 	<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+	<link rel="import" href="../../d2l-typography/d2l-typography.html">
+	<link rel="import" href="../../d2l-fetch-siren-entity-behavior/d2l-fetch-siren-entity-behavior.html">
+	<link rel="import" href="./fetch-siren-entity-whitelist.html">
 	<link rel="import" href="../editor/d2l-rubric-editor.html">
 	<link rel="import" href="../d2l-rubric-title.html">
-	<link rel="import" href="../../d2l-typography/d2l-typography.html">
 
 	<style is="custom-style" include="demo-pages-shared-styles">
 	</style>
@@ -73,6 +75,11 @@
 	</demo-snippet>
 
 	<h3>Rubric saving error (modify Criterion 1 name to see save error, clear criterion name to see validation)</h3>
+	<demo-snippet>
+		<d2l-rubric-editor href="static-data/rubrics/organizations/text-only/199.json" token="foozleberries"></d2l-rubric-editor>
+	</demo-snippet>
+
+	<h3>Rubric add criterion error (click Add Criterion to see error)</h3>
 	<demo-snippet>
 		<d2l-rubric-editor href="static-data/rubrics/organizations/text-only/199.json" token="foozleberries"></d2l-rubric-editor>
 	</demo-snippet>
