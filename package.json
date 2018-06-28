@@ -40,6 +40,6 @@
     "web-component-tester-istanbul": "^0.10.0"
   },
   "dependencies": {
-    "attest": "^2.1.2"
+    "attest": "^2.2.0"
   }
 }
