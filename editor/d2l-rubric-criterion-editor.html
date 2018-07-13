@@ -23,7 +23,7 @@
 				flex-direction: row;
 				justify-content: space-between;
 				background-color: white;
-
+				border: 0;
 				opacity: 0;
 				max-height: 0;
 				transition: opacity 100ms ease-out, max-height 400ms ease-out;
@@ -39,6 +39,7 @@
 			:host(.show) {
 				max-height: none;
 				opacity: 1;
+				border-bottom: var(--d2l-table-border);
 			}
 
 			* {
@@ -103,10 +104,20 @@
 				width: 1.5rem;
 			}
 
+			.col-last-empty {
+				min-width: calc(1rem + 44px); /* button width = 44px including border */
+				flex: 0 0 0;
+			}
+
 			.criterion-remove {
 				position: absolute;
-				align-self: center;
+				margin: 1rem 0;
 				right: -2.5rem;
+			}
+
+			:host-context([dir='rtl']) .criterion-remove {
+				right: auto;
+				left: -2.5rem;
 			}
 
 			[hidden] {
@@ -119,7 +130,7 @@
 			<d2l-textarea
 				id="name"
 				aria-invalid="[[_isAriaInvalid(_nameInvalid)]]"
-				aria-label="[[localize('criterionName')]]"
+				aria-label="[[localize('criterionNameAriaLabel')]]"
 				disabled="[[!_canEdit]]"
 				no-border
 				hover-styles
@@ -161,16 +172,15 @@
 			</div>
 		</div>
 		<div hidden="[[!hasOutOf]]" class="cell col-last points">/ <d2l-text-input value="" aria-label="todo" prevent-submit></d2l-text-input></div>
+		<div hidden="[[hasOutOf]]" class="cell col-last-empty"></div>
 		<div class="criterion-remove">
 			<d2l-button-icon
 				id="remove"
-				hidden$="[[!_showRemove(entity, moreThanOneCriterion)]]"
+				hidden$="[[!_canDelete]]"
 				icon="d2l-tier1:delete"
 				text="[[localize('removeCriterion')]]"
+				on-tap="_handleDeleteCriterion"
 			></d2l-button-icon>
-			<template is="dom-if" if="[[_showRemove(entity, moreThanOneCriterion)]]">
-				<d2l-tooltip for="remove" position="bottom">[[localize('removeCriterion')]]</d2l-tooltip>
-			</template>
 		</div>
 	</template>
 
@@ -182,6 +192,10 @@
 				_canEdit: {
 					type: Boolean,
 					computed: '_canEditCriterion(entity)',
+				},
+				_canDelete: {
+					type: Boolean,
+					computed: '_canDeleteCriterion(entity)',
 				},
 				_nameRequired: {
 					type: Boolean,
@@ -201,10 +215,6 @@
 					type: Boolean,
 				},
 				animating: {
-					type: Boolean,
-					value: false
-				},
-				moreThanOneCriterion: {
 					type: Boolean,
 					value: false
 				}
@@ -296,8 +306,14 @@
 				return '';
 			},
 
-			_showRemove: function(entity, moreThanOneCriterion) {
-				return this._canDeleteCriterion(entity) && moreThanOneCriterion;
+			_handleDeleteCriterion: function() {
+				var action = this.entity.getActionByName('delete');
+				if (action) {
+					this._transitionElement(this, 0);
+					this.performSirenAction(action).then(function() {
+						this.fire('d2l-rubric-criterion-deleted');
+					}.bind(this));
+				}
 			}
 
 		});
