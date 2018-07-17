@@ -24,37 +24,20 @@ suite('<d2l-rubric-criteria-group>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function(done) {
-			
-			element = fixture('basic-criteria');
-			flush(function(){
-				done();
-			});
-			console.log(element.querySelector('d2l-tr').class)
-			// 	function waitForLoad(e) {
-					
-			// 		// if ( Polymer.dom(element.root).querySelectorAll('.criteria').length !== 0) {
-			// 		// 	console.log(Polymer.dom(element.root).querySelectorAll('.criteria'))
-			// 		if (e.detail.entity.getLinkByRel('self').href === 'data/rubrics/organizations/text-only/199/groups.json') {
-			// 			element.removeEventListener('d2l-rubric-entity-changed', waitForLoad);
-						
-			// 		}
-			// 	}
-			// 	stubWhitelist();
-			// 	element.addEventListener('d2l-rubric-entity-changed', waitForLoad);
-			// 	// element.href = 'data/rubrics/organizations/text-only/199/groups.json';
-			// 	element.token = 'foozleberries';
-				
 
-			// 	var my_rows = Polymer.dom(element.root).querySelectorAll('.criteria');
-			// 	for (var i =0; i < my_rows.length; i++){
-			// 		console.log(my_rows[i])
-			// 	}
-			// 	done();
-			// });
-			
+		function myAsyncFunction(callback) {
+			// 500ms delay before callback
+			setTimeout(function() {
+			  callback(element);
+			}, 500);
+		  }
+
+        suiteSetup(function() {	
+			element = fixture('basic-criteria');			
         });
 
-        test('d2l-rubric checks',test_data);
-    });
+		test('d2l-rubric checks',function(){
+			myAsyncFunction(test_data)
+		})
+	});
 });
