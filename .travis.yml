@@ -3,8 +3,9 @@ node_js: node
 dist: trusty
 sudo: required
 before_install:
-  - printf "registry=https://agora.dequecloud.com/artifactory/api/npm/attest-virtual/\n_auth=${AGORA_TOKEN}\nalways-auth = true\nemail = Dave.Westerveld@d2l.com" > .npmrc
+  - printf "_auth=${AGORA_TOKEN}\nalways-auth = true\nemail = Dave.Westerveld@d2l.com" > .npmrc
 before_script:
+- npm run install_attest
 - npm run test:lint
 script:
 - set -e
