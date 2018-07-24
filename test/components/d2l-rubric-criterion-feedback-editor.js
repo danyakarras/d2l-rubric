@@ -4,7 +4,7 @@
 
 suite('<d2l-rubric-criterion-feedback-editor>', function() {
 
-	var sandbox;
+	var element, sandbox;
 
 	suiteSetup(function() {
 		sandbox = sinon.sandbox.create();
@@ -116,10 +116,20 @@ suite('<d2l-rubric-criterion-feedback-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function() {
-            var element = fixture('basic');
+
+		function myAsyncFunction(callback) {
+			// 500ms delay before callback
+			setTimeout(function() {
+			  callback(element);
+			}, 500);
+		  }
+
+        suiteSetup(function() {	
+			element = fixture('basic');			
         });
 
-        test('d2l-rubric-criterion-feedback-editor checks',test_data);
-    });
+		test('d2l-rubric checks',function(){
+			myAsyncFunction(test_data)
+		})
+	});
 });
