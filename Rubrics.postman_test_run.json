@@ -1,0 +1,3415 @@
+{
+	"id": "6a91517e-98ff-43c3-bed6-81341189a278",
+	"name": "Rubrics",
+	"allTests": [],
+	"timestamp": "2018-07-11T17:05:18.219Z",
+	"collection_id": "0f4759f2-3453-48ad-8e8d-37de38fa0b12",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0b3c5b00-dd60-4877-ae84-531b0dae604b",
+	"data": [],
+	"delay": 0,
+	"count": 35,
+	"collection": {
+		"id": "0f4759f2-3453-48ad-8e8d-37de38fa0b12",
+		"name": "Rubrics",
+		"description": "API Calls for the D2L Hypermedia rubrics APIs\n\nNote that the calls in this documentation use a url (for example localhost:44444). You can alternatively specify this using tenant ids in the following format\n\n```\nhttps://{{tenant id}}.rubrics.api.dev.brightspace.com\n```\n\nthis would replace:\n\n```\nhttp://{{url}}/d2l/api/hm/rubrics\n```\n\nin the examples shown in this documentation",
+		"auth": {
+			"type": "bearer",
+			"bearer": [
+				{
+					"key": "token",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjJmOGY2MGJiLWU1NjctNGNlNi1iNjc4LTU3YmJjOGY4ZDYyMiJ9.eyJ0ZW5hbnRpZCI6IjE4NDNhMzU5LWZiZDUtNDk2MS1hYjNjLTgwZmE3NjE5NGQ5MSIsInNjb3BlIjoiKjoqOioiLCJqdGkiOiI0NGI0MzA1Mi1mOGZkLTQ4NjctOTRiZS0xM2FiOTI2ZTJiNzciLCJpc3MiOiJodHRwczovL2FwaS5icmlnaHRzcGFjZS5jb20vYXV0aCIsImF1ZCI6Imh0dHBzOi8vYXBpLmJyaWdodHNwYWNlLmNvbS9hdXRoL3Rva2VuIiwiZXhwIjoxNTMxMzMxOTEwLCJuYmYiOjE1MzEzMjgzMTB9.cF9gJbW-zj2YDFHer0nVePESla3GhyZLOo0XCh5U0SymWfEgXJBNVrCVHs3I38bdY3p6KmjocvQfscC2kvkR0oupLYkGeRgUZhv64aHAkXE-3SIM7qmWfn7lB93LG4x6xqzRBgJY2cdAZ6xXg4bd9DyuCjY5Ws0hZAXCE6t71yQwV5hDz3oevd4rwVvET4AZJzS-gY4d3oFOQdST-8lgnG29q5xGGxu8zU_N_FQpiaLQKIvmjVDuSWcntXWzhknlEjOKGiczaiadcNYhvQmTaxbhEGsnHTUWjz5S7ZXUQE6TiKH1_NYtT7Kx3-OPXRgwWzmi-FHrVnBQLqSKqWKtxQ"
+				}
+			]
+		},
+		"events": [
+			{
+				"listen": "prerequest",
+				"script": {
+					"id": "caa04e49-900a-4ff0-9989-1f5fc8c0f3a2",
+					"type": "text/javascript",
+					"exec": [
+						""
+					]
+				}
+			},
+			{
+				"listen": "test",
+				"script": {
+					"id": "42df79ae-65c6-47fa-b6eb-26cdc3b35330",
+					"type": "text/javascript",
+					"exec": [
+						"globalFunctions = {",
+						"    arrayHasOneItemFromSecondArray: function (array1,array2){",
+						"        var arrayHasItem = false;",
+						"        for (var i=0; i < array2.length; i++){",
+						"            if (array1.includes(array2[i])){",
+						"                if(!arrayHasItem){",
+						"                    arrayHasItem = true;",
+						"                }else{",
+						"                    return false;",
+						"                }",
+						"            }",
+						"        }",
+						"        if (arrayHasItem){",
+						"            return true;",
+						"        }",
+						"        return false;",
+						"    },",
+						"    getRels: function(jsonData){",
+						"        var rels = [];",
+						"        for (i=0; i < jsonData.links.length; i++){",
+						"            rels.push(jsonData.links[i].rel[0]);",
+						"        }",
+						"        return rels;",
+						"    }",
+						"};"
+					]
+				}
+			}
+		],
+		"variables": [
+			{
+				"key": "url",
+				"value": "https://qa108412375g.bspc.com",
+				"description": "",
+				"type": "text",
+				"disabled": false
+			},
+			{
+				"key": "rubric_id",
+				"value": "198",
+				"description": "",
+				"type": "text",
+				"disabled": false
+			},
+			{
+				"key": "demo_student_hash",
+				"value": "sYXIWuF0ETxFZ1zN1WinLjVTh5XzJgSaSfaMEXxBuJg",
+				"description": "",
+				"type": "text",
+				"disabled": false
+			},
+			{
+				"key": "folder_704_hash",
+				"value": "UnVicmljfERyb3Bib3h8NzA0",
+				"description": "",
+				"type": "text",
+				"disabled": false
+			}
+		],
+		"order": [
+			"9ed657c9-5164-4088-b49a-7b9c60daaedd",
+			"1cb6cfc1-34d4-4700-9ddc-f505c810ac96",
+			"2fc7d163-a3b9-4e35-809e-2bb90ceff613",
+			"35437186-1e1f-4aa1-bdd9-3fc7e4cb2b33",
+			"337181a8-478e-4f1f-a724-7423c0ce067d",
+			"7a593473-e353-4fcd-aa1d-b0894f1cec57",
+			"9a3c605a-6d3b-4d81-90ac-5d5c25f1e289",
+			"5fba0028-da17-41d0-83e6-fd7128a97b9e",
+			"266d8b87-3753-473f-9bab-2b4f1dba71b1",
+			"d6714929-fae4-411a-857a-09865ea99ed1"
+		],
+		"folders_order": [],
+		"owner": "3274156",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Rubric Overall Endpoint",
+			"id": "9ed657c9-5164-4088-b49a-7b9c60daaedd",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has rubric class": true,
+				"Has One Status Class": true,
+				"Has One Scoring Method Class": true,
+				"Has One Rubric Type Class": true,
+				"has a name": true,
+				"outOf there unless it is text only": true,
+				"description is there": true
+			},
+			"testPassFailCounts": {
+				"has rubric class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"Has One Status Class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"Has One Scoring Method Class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"Has One Rubric Type Class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"has a name": {
+					"pass": 35,
+					"fail": 0
+				},
+				"outOf there unless it is text only": {
+					"pass": 34,
+					"fail": 1
+				},
+				"description is there": {
+					"pass": 35,
+					"fail": 0
+				}
+			},
+			"times": [
+				"79",
+				"47",
+				"50",
+				"59",
+				"43",
+				"77",
+				"43",
+				"43",
+				"51",
+				"50",
+				"51",
+				"49",
+				"45",
+				"44",
+				"52",
+				"44",
+				"41",
+				"45",
+				"44",
+				"45",
+				"53",
+				"47",
+				"52",
+				"41",
+				"44",
+				"51",
+				"55",
+				"48",
+				"47",
+				"64",
+				"47",
+				"42",
+				"45",
+				"123",
+				"42"
+			],
+			"allTests": [
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": false,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				},
+				{
+					"has rubric class": true,
+					"Has One Status Class": true,
+					"Has One Scoring Method Class": true,
+					"Has One Rubric Type Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true,
+					"description is there": true
+				}
+			],
+			"time": "42",
+			"totalRequestTime": 1803,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Overall Levels Endpoint",
+			"id": "1cb6cfc1-34d4-4700-9ddc-f505c810ac96",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has collection class": true,
+				"has overall-levels class": true,
+				"has total defined": true,
+				"number of level entities matches the total": true
+			},
+			"testPassFailCounts": {
+				"has collection class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has overall-levels class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has total defined": {
+					"pass": 34,
+					"fail": 0
+				},
+				"number of level entities matches the total": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"46",
+				"44",
+				"48",
+				"58",
+				"45",
+				"48",
+				"75",
+				"47",
+				"46",
+				"46",
+				"86",
+				"49",
+				"48",
+				"49",
+				"49",
+				"54",
+				"43",
+				"48",
+				"44",
+				"54",
+				"49",
+				"51",
+				"42",
+				"44",
+				"46",
+				"46",
+				"47",
+				"54",
+				"44",
+				"59",
+				"45",
+				"46",
+				"47",
+				"45",
+				"44"
+			],
+			"allTests": [
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has overall-levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				}
+			],
+			"time": "44",
+			"totalRequestTime": 1736,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Overall Level Endpoint",
+			"id": "2fc7d163-a3b9-4e35-809e-2bb90ceff613",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has overall-level class": true,
+				"has name propery": true,
+				"has rangeStart propery": true,
+				"has two entities (description and feedback)": true,
+				"description is there": true,
+				"feedback is there": true,
+				"next and prev links are there": true
+			},
+			"testPassFailCounts": {
+				"has overall-level class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has name propery": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has rangeStart propery": {
+					"pass": 31,
+					"fail": 3
+				},
+				"has two entities (description and feedback)": {
+					"pass": 34,
+					"fail": 0
+				},
+				"description is there": {
+					"pass": 34,
+					"fail": 0
+				},
+				"feedback is there": {
+					"pass": 34,
+					"fail": 0
+				},
+				"next and prev links are there": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"162",
+				"177",
+				"157",
+				"147",
+				"149",
+				"190",
+				"166",
+				"175",
+				"146",
+				"160",
+				"166",
+				"154",
+				"9150",
+				"157",
+				"153",
+				"155",
+				"148",
+				"150",
+				"152",
+				"164",
+				"163",
+				"148",
+				"148",
+				"158",
+				"157",
+				"171",
+				"159",
+				"153",
+				"185",
+				"146",
+				"165",
+				"212",
+				"152",
+				"149"
+			],
+			"allTests": [
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": false,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": false,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": false,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				},
+				{
+					"has overall-level class": true,
+					"has name propery": true,
+					"has rangeStart propery": true,
+					"has two entities (description and feedback)": true,
+					"description is there": true,
+					"feedback is there": true,
+					"next and prev links are there": true
+				}
+			],
+			"time": "149",
+			"totalRequestTime": 14444,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Groups Endpoint",
+			"id": "35437186-1e1f-4aa1-bdd9-3fc7e4cb2b33",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has collection class": true,
+				"has criteria-groups class": true,
+				"has no properties": true
+			},
+			"testPassFailCounts": {
+				"has collection class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has criteria-groups class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has no properties": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"43",
+				"63",
+				"50",
+				"44",
+				"48",
+				"47",
+				"43",
+				"47",
+				"43",
+				"47",
+				"48",
+				"52",
+				"46",
+				"54",
+				"43",
+				"42",
+				"46",
+				"45",
+				"50",
+				"47",
+				"47",
+				"43",
+				"48",
+				"55",
+				"48",
+				"53",
+				"51",
+				"48",
+				"68",
+				"43",
+				"47",
+				"54",
+				"46",
+				"46"
+			],
+			"allTests": [
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				},
+				{
+					"has collection class": true,
+					"has criteria-groups class": true,
+					"has no properties": true
+				}
+			],
+			"time": "46",
+			"totalRequestTime": 1645,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Group Endpoint",
+			"id": "337181a8-478e-4f1f-a724-7423c0ce067d",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has criteria-group class": true,
+				"Has One scoring method Class": true,
+				"has a name": true,
+				"outOf there unless it is text only": true
+			},
+			"testPassFailCounts": {
+				"has criteria-group class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"Has One scoring method Class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has a name": {
+					"pass": 32,
+					"fail": 2
+				},
+				"outOf there unless it is text only": {
+					"pass": 33,
+					"fail": 1
+				}
+			},
+			"times": [
+				"47",
+				"52",
+				"50",
+				"48",
+				"44",
+				"52",
+				"42",
+				"42",
+				"42",
+				"46",
+				"45",
+				"50",
+				"45",
+				"52",
+				"49",
+				"42",
+				"43",
+				"43",
+				"43",
+				"50",
+				"49",
+				"46",
+				"47",
+				"47",
+				"47",
+				"52",
+				"53",
+				"58",
+				"61",
+				"42",
+				"46",
+				"45",
+				"46",
+				"39"
+			],
+			"allTests": [
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": false
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": false,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": false,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criteria-group class": true,
+					"Has One scoring method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				}
+			],
+			"time": "39",
+			"totalRequestTime": 1605,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Criteria Endpoint",
+			"id": "7a593473-e353-4fcd-aa1d-b0894f1cec57",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has expected classes": true,
+				"has no properties": true
+			},
+			"testPassFailCounts": {
+				"has expected classes": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has no properties": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"51",
+				"53",
+				"54",
+				"57",
+				"53",
+				"59",
+				"48",
+				"56",
+				"49",
+				"46",
+				"56",
+				"60",
+				"55",
+				"58",
+				"60",
+				"52",
+				"49",
+				"50",
+				"73",
+				"55",
+				"57",
+				"48",
+				"56",
+				"50",
+				"56",
+				"61",
+				"62",
+				"49",
+				"63",
+				"49",
+				"52",
+				"55",
+				"52",
+				"46"
+			],
+			"allTests": [
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				},
+				{
+					"has expected classes": true,
+					"has no properties": true
+				}
+			],
+			"time": "46",
+			"totalRequestTime": 1850,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Specific Criterion Endpoint",
+			"id": "9a3c605a-6d3b-4d81-90ac-5d5c25f1e289",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has criterion class": true,
+				"Has One Scoring Method Class": true,
+				"has a name": true,
+				"outOf there unless it is text only": true
+			},
+			"testPassFailCounts": {
+				"has criterion class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"Has One Scoring Method Class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has a name": {
+					"pass": 32,
+					"fail": 2
+				},
+				"outOf there unless it is text only": {
+					"pass": 33,
+					"fail": 1
+				}
+			},
+			"times": [
+				"178",
+				"160",
+				"156",
+				"158",
+				"171",
+				"152",
+				"157",
+				"214",
+				"151",
+				"206",
+				"147",
+				"153",
+				"154",
+				"174",
+				"156",
+				"152",
+				"155",
+				"163",
+				"154",
+				"168",
+				"163",
+				"161",
+				"169",
+				"155",
+				"178",
+				"165",
+				"160",
+				"154",
+				"219",
+				"155",
+				"159",
+				"157",
+				"169",
+				"158"
+			],
+			"allTests": [
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": false
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": false,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": false,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				},
+				{
+					"has criterion class": true,
+					"Has One Scoring Method Class": true,
+					"has a name": true,
+					"outOf there unless it is text only": true
+				}
+			],
+			"time": "158",
+			"totalRequestTime": 5601,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Criterion Cell Endpoint",
+			"id": "5fba0028-da17-41d0-83e6-fd7128a97b9e",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has criterion-cell class": true,
+				"has points if overridden": true,
+				"description is there": true,
+				"feedback is there": true
+			},
+			"testPassFailCounts": {
+				"has criterion-cell class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has points if overridden": {
+					"pass": 34,
+					"fail": 0
+				},
+				"description is there": {
+					"pass": 34,
+					"fail": 0
+				},
+				"feedback is there": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"195",
+				"164",
+				"162",
+				"154",
+				"154",
+				"152",
+				"162",
+				"191",
+				"152",
+				"201",
+				"150",
+				"154",
+				"157",
+				"167",
+				"155",
+				"155",
+				"160",
+				"163",
+				"157",
+				"161",
+				"162",
+				"158",
+				"209",
+				"152",
+				"156",
+				"190",
+				"154",
+				"151",
+				"179",
+				"152",
+				"157",
+				"154",
+				"162",
+				"181"
+			],
+			"allTests": [
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				},
+				{
+					"has criterion-cell class": true,
+					"has points if overridden": true,
+					"description is there": true,
+					"feedback is there": true
+				}
+			],
+			"time": "181",
+			"totalRequestTime": 5583,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Levels Endpoint",
+			"id": "266d8b87-3753-473f-9bab-2b4f1dba71b1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has collection class": true,
+				"has levels class": true,
+				"has total defined": true,
+				"number of level entities matches the total": true
+			},
+			"testPassFailCounts": {
+				"has collection class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has levels class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has total defined": {
+					"pass": 34,
+					"fail": 0
+				},
+				"number of level entities matches the total": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"47",
+				"49",
+				"52",
+				"46",
+				"67",
+				"49",
+				"49",
+				"50",
+				"55",
+				"43",
+				"52",
+				"57",
+				"58",
+				"47",
+				"49",
+				"46",
+				"52",
+				"49",
+				"50",
+				"44",
+				"54",
+				"50",
+				"53",
+				"56",
+				"50",
+				"50",
+				"55",
+				"44",
+				"61",
+				"64",
+				"49",
+				"45",
+				"59",
+				"66"
+			],
+			"allTests": [
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				},
+				{
+					"has collection class": true,
+					"has levels class": true,
+					"has total defined": true,
+					"number of level entities matches the total": true
+				}
+			],
+			"time": "66",
+			"totalRequestTime": 1767,
+			"iterationResults": {}
+		},
+		{
+			"name": "Rubric Level Endpoint",
+			"id": "d6714929-fae4-411a-857a-09865ea99ed1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"has level class": true,
+				"has name propery": true,
+				"does not have points if overridden": true,
+				"next and prev links are there": true
+			},
+			"testPassFailCounts": {
+				"has level class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has name propery": {
+					"pass": 34,
+					"fail": 0
+				},
+				"does not have points if overridden": {
+					"pass": 34,
+					"fail": 0
+				},
+				"next and prev links are there": {
+					"pass": 34,
+					"fail": 0
+				}
+			},
+			"times": [
+				"200",
+				"163",
+				"179",
+				"158",
+				"160",
+				"155",
+				"173",
+				"170",
+				"164",
+				"165",
+				"156",
+				"197",
+				"162",
+				"171",
+				"150",
+				"154",
+				"283",
+				"183",
+				"188",
+				"154",
+				"162",
+				"149",
+				"191",
+				"151",
+				"188",
+				"161",
+				"163",
+				"163",
+				"213",
+				"150",
+				"166",
+				"149",
+				"150",
+				"211"
+			],
+			"allTests": [
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				},
+				{
+					"has level class": true,
+					"has name propery": true,
+					"does not have points if overridden": true,
+					"next and prev links are there": true
+				}
+			],
+			"time": "211",
+			"totalRequestTime": 5852,
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 1459,
+	"totalFail": 10,
+	"totalTime": 41886,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Rubric Overall Endpoint",
+			"id": "9ed657c9-5164-4088-b49a-7b9c60daaedd",
+			"url": "https://qa108412375g.bspc.com/d2l/api/hm/rubrics/organizations/131646/198",
+			"time": "42",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has rubric class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"Has One Status Class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"Has One Scoring Method Class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"Has One Rubric Type Class": {
+					"pass": 35,
+					"fail": 0
+				},
+				"has a name": {
+					"pass": 35,
+					"fail": 0
+				},
+				"outOf there unless it is text only": {
+					"pass": 34,
+					"fail": 1
+				},
+				"description is there": {
+					"pass": 35,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Overall Levels Endpoint",
+			"id": "1cb6cfc1-34d4-4700-9ddc-f505c810ac96",
+			"url": "https://qa108412375g.bspc.com/d2l/api/hm/rubrics/organizations/131646/198/overallLevels",
+			"time": "44",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has collection class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has overall-levels class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has total defined": {
+					"pass": 34,
+					"fail": 0
+				},
+				"number of level entities matches the total": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Overall Level Endpoint",
+			"id": "2fc7d163-a3b9-4e35-809e-2bb90ceff613",
+			"url": "https://1843a359-fbd5-4961-ab3c-80fa76194d91.rubrics.api.dev.brightspace.com/organizations/131646/198/overallLevels/1474",
+			"time": "149",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has overall-level class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has name propery": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has rangeStart propery": {
+					"pass": 31,
+					"fail": 3
+				},
+				"has two entities (description and feedback)": {
+					"pass": 34,
+					"fail": 0
+				},
+				"description is there": {
+					"pass": 34,
+					"fail": 0
+				},
+				"feedback is there": {
+					"pass": 34,
+					"fail": 0
+				},
+				"next and prev links are there": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Groups Endpoint",
+			"id": "35437186-1e1f-4aa1-bdd9-3fc7e4cb2b33",
+			"url": "https://qa108412375g.bspc.com/d2l/api/hm/rubrics/organizations/131646/198/groups",
+			"time": "46",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has collection class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has criteria-groups class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has no properties": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Group Endpoint",
+			"id": "337181a8-478e-4f1f-a724-7423c0ce067d",
+			"url": "https://qa108412375g.bspc.com/d2l/api/hm/rubrics/organizations/131646/198/groups/175",
+			"time": "39",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has criteria-group class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"Has One scoring method Class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has a name": {
+					"pass": 32,
+					"fail": 2
+				},
+				"outOf there unless it is text only": {
+					"pass": 33,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Rubric Criteria Endpoint",
+			"id": "7a593473-e353-4fcd-aa1d-b0894f1cec57",
+			"url": "https://qa108412375g.bspc.com/d2l/api/hm/rubrics/organizations/131646/198/groups/175/criteria",
+			"time": "46",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has expected classes": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has no properties": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Specific Criterion Endpoint",
+			"id": "9a3c605a-6d3b-4d81-90ac-5d5c25f1e289",
+			"url": "https://1843a359-fbd5-4961-ab3c-80fa76194d91.rubrics.api.dev.brightspace.com/organizations/131646/198/groups/175/criteria/620",
+			"time": "158",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has criterion class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"Has One Scoring Method Class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has a name": {
+					"pass": 32,
+					"fail": 2
+				},
+				"outOf there unless it is text only": {
+					"pass": 33,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Rubric Criterion Cell Endpoint",
+			"id": "5fba0028-da17-41d0-83e6-fd7128a97b9e",
+			"url": "https://1843a359-fbd5-4961-ab3c-80fa76194d91.rubrics.api.dev.brightspace.com/organizations/131646/198/groups/175/criteria/620/0",
+			"time": "181",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has criterion-cell class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has points if overridden": {
+					"pass": 34,
+					"fail": 0
+				},
+				"description is there": {
+					"pass": 34,
+					"fail": 0
+				},
+				"feedback is there": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Levels Endpoint",
+			"id": "266d8b87-3753-473f-9bab-2b4f1dba71b1",
+			"url": "https://qa108412375g.bspc.com/d2l/api/hm/rubrics/organizations/131646/198/groups/175/levels",
+			"time": "66",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has collection class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has levels class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has total defined": {
+					"pass": 34,
+					"fail": 0
+				},
+				"number of level entities matches the total": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Rubric Level Endpoint",
+			"id": "d6714929-fae4-411a-857a-09865ea99ed1",
+			"url": "https://1843a359-fbd5-4961-ab3c-80fa76194d91.rubrics.api.dev.brightspace.com/organizations/131646/198/groups/175/levels/1469",
+			"time": "211",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"has level class": {
+					"pass": 34,
+					"fail": 0
+				},
+				"has name propery": {
+					"pass": 34,
+					"fail": 0
+				},
+				"does not have points if overridden": {
+					"pass": 34,
+					"fail": 0
+				},
+				"next and prev links are there": {
+					"pass": 34,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

@@ -56,5 +56,12 @@
             ],
             "href": "static-data/rubrics/organizations/text-only/199.json"
         }
+    ],
+    "actions": [
+        {
+            "href": "static-data/rubrics/organizations/text-only/199/groups.json",
+            "name": "create",
+            "method": "POST"
+        }
     ]
 }
