@@ -15,8 +15,11 @@
 			var fields;
 			if (action.method === 'GET' || action.method === 'HEAD') {
 				fields = url.searchParams;
+			// Disable URLSearchParams until they are fully supported (i.e. Edge)
+			/*
 			} else if (window.URLSearchParams && action.type === 'application/x-www-form-urlencoded') {
 				fields = new URLSearchParams();
+			*/
 			} else {
 				fields = new FormData();
 			}
@@ -67,7 +70,6 @@
 			if (sendSaveEvent) {
 				self.fire('d2l-rubric-entity-save-start');
 			}
-
 			return window.d2lfetch.fetch(href, opts)
 				.then(function(resp) {
 					if (sendSaveEvent && resp.ok) {
@@ -79,7 +81,6 @@
 					if (!resp.ok) {
 						var errMsg = resp.statusText + ' response executing ' + opts.method + ' on ' + href + '.';
 						var error = new Error(errMsg);
-						self.fire('d2l-rubric-entity-save-error', { error: error });
 						throw error;
 					}
 					var linkHeader = resp.headers ? resp.headers.get('Link') : null;
@@ -99,6 +100,10 @@
 							links: links
 						};
 					});
+				})
+				.catch(function(reason) {
+					self.fire('d2l-rubric-entity-save-error', { error: new Error(reason.message) });
+					throw reason;
 				});
 		},
 

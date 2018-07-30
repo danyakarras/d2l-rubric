@@ -10,13 +10,23 @@
 		<script src="../../node_modules/attest/attest.js"></script>
 		<script src="./ally-test-script.js"></script>
 
-		<link rel="import" href="../../editor/d2l-rubric-criteria-group-editor.html">
+		<link rel="import" href="../../../promise-polyfill/promise-polyfill.html">
+		<script src="../../../fetch/fetch.js"></script>
 		<script src="utilities/fetch-siren-entity-whitelist.js"></script>
+
+		<link rel="import" href="../../store/entity-store.html">
+		<link rel="import" href="../../editor/d2l-rubric-criteria-group-editor.html">
+		<script src="static-data/rubrics/organizations/text-only/199/groups/176-name-mod.js"></script>
 	</head>
 	<body>
-		<test-fixture id="basic-criteria">
+		<test-fixture id="basic">
 			<template>
-				<d2l-rubric-criteria-group-editor></d2l-rubric-criteria-group-editor>
+				<d2l-rubric-criteria-group-editor href="static-data/rubrics/organizations/text-only/199/groups/176.json"></d2l-rubric-criteria-group-editor>
+			</template>
+		</test-fixture>
+		<test-fixture id="readonly">
+			<template>
+				<d2l-rubric-criteria-group-editor href="static-data/rubrics/organizations/text-only/199/groups/176-readonly.json"></d2l-rubric-criteria-group-editor>
 			</template>
 		</test-fixture>
 		<script src="d2l-rubric-criteria-group-editor.js"></script>

@@ -2,6 +2,7 @@
 <link rel="import" href="../../d2l-table/d2l-table-shared-styles.html">
 <link rel="import" href="../../d2l-hm-constants-behavior/d2l-hm-constants-behavior.html">
 <link rel="import" href="../../d2l-alert/d2l-alert.html">
+<link rel="import" href="../../d2l-tooltip/d2l-tooltip.html">
 
 <link rel="import" href="../store/entity-behavior.html">
 <link rel="import" href="./../d2l-rubric-loading.html">
@@ -24,22 +25,13 @@
 				margin-bottom: 1rem;
 			}
 
-			.criteria-group {
-				display: flex;
+			#group-name {
+				align-self: flex-start;
+				padding-right: 0.5rem;
 			}
 
-			.criteria-group-editable {
-				border: var(--d2l-table-border);
-				border-radius: var(--d2l-table-border-radius);
-				width: 100%;
-				background-color: var(--d2l-table-header-background-color);
-			}
-
-			.header {
-				border-bottom: var(--d2l-table-border);
-			}
-			.criterion-remove {
-				width: 2.5rem;
+			[hidden] {
+				display: none;
 			}
 		</style>
 
@@ -51,13 +43,25 @@
 
 		<div class="criteria-group">
 			<d2l-rubric-loading hidden$="[[_showContent]]"></d2l-rubric-loading>
-			<div class="criteria-group-editable">
-				<div class="header">
-					<d2l-rubric-levels-editor href="[[_levelsHref]]" token="[[token]]" has-out-of="[[_hasOutOf(entity)]]"></d2l-rubric-levels-editor>
-				</div>
-				<d2l-rubric-criteria-editor href="[[_criteriaCollectionHref]]" token="[[token]]" has-out-of="[[_hasOutOf(entity)]]"></d2l-rubric-criteria-editor>
-			</div>
-			<div class="criterion-remove"></div>
+			<d2l-rubric-levels-editor
+				href="[[_levelsHref]]"
+				token="[[token]]"
+				has-out-of="[[_hasOutOf(entity)]]">
+				<d2l-text-input
+					id="group-name"
+					slot="group-name-slot"
+					value="[[entity.properties.name]]"
+					hidden="[[!showGroupName]]"
+					disabled="[[!_canEditGroupName(entity)]]"
+					on-change="_saveName"
+					aria-label="[[localize('groupName')]]"
+					required prevent-submit>
+				</d2l-text-input>
+			</d2l-rubric-levels-editor>
+			<template is="dom-if" if="[[_nameInvalid]]">
+				<d2l-tooltip for="group-name" position="bottom">[[_nameInvalidError]]</d2l-tooltip>
+			</template>
+			<d2l-rubric-criteria-editor href="[[_criteriaCollectionHref]]" token="[[token]]" has-out-of="[[_hasOutOf(entity)]]"></d2l-rubric-criteria-editor>
 		</div>
 	</template>
 
@@ -66,16 +70,24 @@
 			is: 'd2l-rubric-criteria-group-editor',
 
 			properties: {
+				showGroupName: Boolean,
 				_levelsHref: String,
 				_criteriaCollectionHref: String,
 				_showContent: {
 					type: Boolean,
 					value: false
 				},
+				_nameInvalid: {
+					type: Boolean
+				},
+				_nameInvalidError: {
+					type: String
+				}
 			},
 
 			behaviors: [
 				D2L.PolymerBehaviors.Rubric.EntityBehavior,
+				D2L.PolymerBehaviors.Rubric.SirenActionBehavior,
 				window.D2L.Hypermedia.HMConstantsBehavior,
 				D2L.PolymerBehaviors.Rubric.LocalizeBehavior
 			],
@@ -114,6 +126,35 @@
 			_handleSaveError: function(e) {
 				this._clearAlerts();
 				this._addAlert('error', e.detail.error.message, this.localize('rubricSavingErrorMessage'));
+			},
+
+			_canEditGroupName: function(entity) {
+				return entity && entity.hasActionByName('update');
+			},
+
+			_saveName: function(e) {
+				var action = this.entity.getActionByName('update');
+				if (action) {
+					if (!e.target.value.trim()) {
+						this._toggleBubble('_nameInvalid', true, this.localize('nameIsRequired'));
+					} else {
+						this._toggleBubble('_nameInvalid', false);
+						var fields = new FormData();
+						fields.append('name', e.target.value);
+						this.performSirenAction(action, fields).then(function() {
+							this.fire('d2l-rubric-group-name-saved');
+						}.bind(this));
+					}
+				}
+			},
+
+			_toggleBubble: function(invalidId, show, error) {
+				if (show) {
+					this.set(invalidId, true);
+					this.set(invalidId + 'Error', error);
+				} else {
+					this.set(invalidId, false);
+				}
 			},
 		});
 	</script>

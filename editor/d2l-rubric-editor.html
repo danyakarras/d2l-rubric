@@ -8,7 +8,14 @@
 <link rel="import" href="../store/entity-store.html">
 <link rel="import" href="../store/entity-behavior.html">
 <link rel="import" href="./d2l-rubric-criteria-groups-editor.html">
+<link rel="import" href="./d2l-rubric-editor-menu.html">
 <link rel="import" href="../../d2l-save-status/d2l-save-status.html">
+<link rel="import" href="../store/siren-action-behavior.html">
+<link rel="import" href="../../iron-a11y-announcer/iron-a11y-announcer.html">
+
+<!--- Local WhiteList Hack-->
+<!-- <link rel="import" href="../demo/fetch-siren-entity-whitelist.html"> -->
+<!--- Local WhiteList Hack-->
 
 <!--
 `d2l-rubric-editor`
@@ -86,19 +93,26 @@ Creates and edits a rubric
 			}
 
 			#editor-save-status-container {
-				padding-right: 0.12rem
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-end;
+				overflow: hidden;
+				padding-right: 46px;
 			}
-
 			:host-context([dir='rtl']) #editor-save-status-container {
-				padding-left: 0.12rem
+				padding-left: 46px;
 			}
 
 			:host(:dir(rtl)) #editor-save-status-container {
-				padding-left: 0.12rem
+				padding-left: 46px;
+			}
+
+			[hidden] {
+				display: none;
 			}
 		</style>
 		<div id="editor-save-status-container">
-			<d2l-save-status id="editor-save-status" class="right"></d2l-save-status>
+			<d2l-save-status id="editor-save-status"></d2l-save-status>
 		</div>
 		<template is="dom-repeat" items="[[_alerts]]">
 			<d2l-alert type="[[item.alertType]]">
@@ -107,8 +121,13 @@ Creates and edits a rubric
 		</template>
 		<slot></slot>
 		<d2l-rubric-loading hidden$="[[_hideLoading(_showContent,_hasAlerts)]]"></d2l-rubric-loading>
-		<div hidden$="[[_hideLoading(_showContent,_hasAlerts)]]" class="out-of-loader"></div>
-		<div hidden$="[[_hideOutOf(_showContent,_hasAlerts)]]">
+		<div hidden$="[[_hideLoading(_showContent,_hasAlerts)]]" class="out-of-loader">
+		</div>
+		<div id="rubric-editor-container" hidden >
+			<d2l-rubric-editor-menu
+				on-d2l-rubric-reverse-levels="_handleReverseLevels"
+				reverse-levels-enabled="[[_present(_reverseLevels)]]"></d2l-rubric-editor-menu>
+
 			<d2l-rubric-criteria-groups-editor href="[[_getHref(_criteriaGroups)]]" token="[[token]]"></d2l-rubric-criteria-groups-editor>
 			<div class="out-of-container" hidden="[[!_hasOutOf(entity)]]">
 				<div class="out-of-text">
@@ -127,6 +146,9 @@ Creates and edits a rubric
 				_criteriaGroups: {
 					type: Object
 				},
+				_reverseLevels: {
+					type: Object
+				},
 				_showContent: {
 					type: Boolean,
 					value: false
@@ -136,6 +158,7 @@ Creates and edits a rubric
 			behaviors: [
 				D2L.PolymerBehaviors.Rubric.EntityBehavior,
 				window.D2L.Hypermedia.HMConstantsBehavior,
+				D2L.PolymerBehaviors.Rubric.SirenActionBehavior,
 				D2L.PolymerBehaviors.Rubric.LocalizeBehavior
 			],
 
@@ -151,6 +174,11 @@ Creates and edits a rubric
 
 			ready: function() {
 				this.addEventListener('d2l-rubric-entity-error', this._handleError.bind(this));
+				this.addEventListener('d2l-rubric-entity-save-error', this._handleSaveError.bind(this));
+			},
+
+			attached: function() {
+				Polymer.IronA11yAnnouncer.requestAvailability();
 			},
 
 			_onEntitySave: function(e) {
@@ -165,12 +193,18 @@ Creates and edits a rubric
 			_onEntityChanged: function(entity) {
 				if (entity && entity.hasLinkByRel(this.HypermediaRels.Rubrics.criteriaGroups)) {
 					this._showContent = true;
+					this._displayEditor(true);
 					this._criteriaGroups = entity.getLinkByRel(this.HypermediaRels.Rubrics.criteriaGroups);
+					this._reverseLevels = entity.getActionByName('reverse-levels') || null;
 				}
 			},
 
 			_getHref: function(link) {
 				return link.href;
+			},
+
+			_present: function(obj) {
+				return !!obj;
 			},
 
 			_hasOutOf: function(entity) {
@@ -181,12 +215,24 @@ Creates and edits a rubric
 				return showContent || hasAlerts;
 			},
 
-			_hideOutOf: function(showContent, hasAlerts) {
-				return !showContent || hasAlerts;
+			_displayEditor: function(show) {
+				this.$['rubric-editor-container'].hidden = !show;
 			},
-
+			_handleReverseLevels: function() {
+				if (this._reverseLevels) {
+					this.performSirenAction(this._reverseLevels)
+						.then(function() { this.fire('d2l-rubric-levels-reversed');	}.bind(this));
+				}
+			},
+			_handleSaveError: function(e) {
+				this._clearAlerts();
+				if (e.target === this) { // handle own error events
+					this._addAlert('error', e.detail.error.message, this.localize('rubricSavingErrorMessage'));
+				}
+			},
 			_handleError: function(e) {
 				this._addAlert('error', e.detail.error.message, this.localize('rubricLoadingErrorMessage'));
+				this._displayEditor(false);
 			}
 		});
 	</script>
