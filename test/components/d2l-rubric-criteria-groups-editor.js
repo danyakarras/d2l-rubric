@@ -105,10 +105,8 @@ suite('<d2l-rubric-criteria-groups-editor>', function() {
 	});
 	
 	suite ('Ally Test',function(){
-		suiteSetup(function() {
-			var element = fixture('basic');
+		test('d2l-rubric-criteria-groups-editor ally checks',function(){
+			ally_tests();
 		});
-
-		test('d2l-rubric checks',test_data);
 	});
 });

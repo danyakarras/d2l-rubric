@@ -117,19 +117,8 @@ suite('<d2l-rubric-criterion-description-editor>', function() {
 
 	suite ('Ally Test',function(){
 
-		function myAsyncFunction(callback) {
-			// 500ms delay before callback
-			setTimeout(function() {
-			  callback(element);
-			}, 500);
-		  }
-
-        suiteSetup(function() {	
-			element = fixture('basic');			
-        });
-
-		test('d2l-rubric checks',function(){
-			myAsyncFunction(test_data)
+		test('d2l-rubric-criterion-description-editor ally checks',function(){
+			ally_tests(10);
 		})
 	});
 });

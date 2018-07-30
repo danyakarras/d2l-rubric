@@ -73,10 +73,8 @@ suite('<d2l-rubric>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function() {
-            element = fixture('basic');
-        });
-
-		test('d2l-rubric checks',test_data);
-    });
+		test('d2l-rubric ally checks',function(){
+			ally_tests();
+		});
+	});
 });

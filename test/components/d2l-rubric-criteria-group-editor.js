@@ -24,10 +24,8 @@ suite('<d2l-rubric-criteria-group-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function() {
-            element = fixture('basic-criteria');
-        });
-
-        test('d2l-rubric checks',test_data);
+        test('d2l-rubric-criteria-group-editor ally checks',function(){
+			return ally_tests();
+		});
     });
 });

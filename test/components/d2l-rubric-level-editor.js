@@ -166,10 +166,8 @@ suite('<d2l-rubric-level-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function() {
-            var element = fixture('basic');
-        });
-
-        test('d2l-rubric-level-editor checks',test_data);
-    });
+		test('d2l-rubric-level-editor ally checks',function(){
+			ally_tests();
+		});
+	});
 });

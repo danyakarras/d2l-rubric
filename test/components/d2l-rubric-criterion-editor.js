@@ -181,10 +181,8 @@ suite('<d2l-rubric-criterion-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function() {
-            var element = fixture('basic');
-        });
-
-        test('d2l-rubric-criterion-edior checks',test_data);
-    });
+		test('d2l-rubric-criterion-edior ally checks',function(){
+			ally_tests();
+		});
+	});
 });

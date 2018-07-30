@@ -25,19 +25,21 @@ suite('<d2l-rubric-criteria-group>', function() {
 
 	suite ('Ally Test',function(){
 
-		function myAsyncFunction(callback) {
-			// 500ms delay before callback
-			setTimeout(function() {
-			  callback(element);
-			}, 500);
+        suiteSetup(function(done) {
+			element = fixture('basic-criteria');
+			function waitForLoad(e) {
+				if (e.detail.entity.getLinkByRel('self').href === 'static-data/rubrics/organizations/text-only/199/groups/176.json') {
+					element.removeEventListener('d2l-rubric-entity-changed', waitForLoad);
+					done()	
 		  }
+			}
+			element.addEventListener('d2l-rubric-entity-changed', waitForLoad);
+			element.href = 'static-data/rubrics/organizations/text-only/199/groups/176.json';
+			element.token = 'foozleberries';			
+		});
 
-        suiteSetup(function() {	
-			element = fixture('basic-criteria');			
-        });
-
-		test('d2l-rubric checks',function(){
-			myAsyncFunction(test_data)
-		})
+		test('d2l-rubric-criteria-groups ally checks',function(){
+			return ally_tests(200);
+		});
 	});
 });

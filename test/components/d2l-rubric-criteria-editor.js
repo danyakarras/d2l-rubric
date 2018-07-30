@@ -101,11 +101,9 @@ suite('<d2l-rubric-criteria-editor>', function() {
 			});
 		});
 		suite ('Ally Test',function(){
-			suiteSetup(function() {
-				var element = fixture('basic');
+			test('d2l-rubric-criteria-editor ally checks',function(){
+				return ally_tests();
 			});
-	
-			test('d2l-rubric checks',test_data);
 		});
 	});
 });

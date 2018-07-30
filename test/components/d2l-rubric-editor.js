@@ -25,10 +25,8 @@ suite('<d2l-rubric-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
-        suiteSetup(function() {
-            element = fixture('basic');
-        });
-
-        test('d2l-rubric-editor checks',test_data);
-    });
+		test('d2l-rubric-editor ally checks',function(){
+			ally_tests();
+		});
+	});
 });

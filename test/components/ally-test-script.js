@@ -1,5 +1,10 @@
-test_data = function(){
+var ally_tests = function(my_delay=0){
     
+    function delay(t, v) {
+        return new Promise(function(resolve) { 
+            setTimeout(resolve.bind(null, v), t)
+        });
+    }
     //disable a few rules that don't apply to our component
     var rules_options = {
         "rules":{
@@ -10,7 +15,8 @@ test_data = function(){
         }
     }
     let my_res = '_UNSET';
-    return attest.run(rules_options).then(
+    return delay(my_delay).then(function(){
+        return attest.run(rules_options).then(
         function(results){
             my_res = results;
             expect(results.violations.length).to.equal(0);
@@ -22,5 +28,6 @@ test_data = function(){
                     console.log(JSON.stringify(my_res.violations[i]));
                 }
                 throw err
-            }
-        )};
+            })
+        });
+    }
