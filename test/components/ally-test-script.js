@@ -11,7 +11,8 @@ var ally_tests = function(my_delay=0){
             'html-has-lang':{enabled:false},
             'landmark-one-main':{enabled:false},
             'page-has-heading-one':{enabled:false},
-            'region':{enabled:false}
+            'region':{enabled:false},
+            'duplicate-id':{enabled:false}
         }
     }
     let my_res = '_UNSET';
