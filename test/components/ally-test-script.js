@@ -1,3 +1,13 @@
+var isAttestInstalled = function(){
+    
+    try {
+        attest.reset();
+    }
+    catch (err){
+        return false
+    }
+    return true
+}
 var ally_tests = function(my_delay=0){
     
     function delay(t, v) {

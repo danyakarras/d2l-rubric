@@ -26,6 +26,9 @@ suite('<d2l-rubric-criteria-group>', function() {
 	suite ('Ally Test',function(){
 
         suiteSetup(function(done) {
+			if (!isAttestInstalled()){
+				this.skip();
+			}
 			element = fixture('basic-criteria');
 			function waitForLoad(e) {
 				if (e.detail.entity.getLinkByRel('self').href === 'static-data/rubrics/organizations/text-only/199/groups/176.json') {

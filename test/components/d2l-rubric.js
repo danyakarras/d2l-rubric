@@ -73,6 +73,11 @@ suite('<d2l-rubric>', function() {
 	});
 
 	suite ('Ally Test',function(){
+		suiteSetup(function(){
+			if (!isAttestInstalled()){
+				this.skip();
+			}
+		});
 		test('d2l-rubric ally checks',function(){
 			ally_tests();
 		});

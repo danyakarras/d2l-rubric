@@ -181,6 +181,11 @@ suite('<d2l-rubric-criterion-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
+		suiteSetup(function(){
+			if (!isAttestInstalled()){
+				this.skip();
+			}
+		});
 		test('d2l-rubric-criterion-edior ally checks',function(){
 			ally_tests();
 		});

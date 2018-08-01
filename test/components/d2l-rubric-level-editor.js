@@ -166,6 +166,11 @@ suite('<d2l-rubric-level-editor>', function() {
 	});
 
 	suite ('Ally Test',function(){
+		suiteSetup(function(){
+			if (!isAttestInstalled()){
+				this.skip();
+			}
+		});
 		test('d2l-rubric-level-editor ally checks',function(){
 			ally_tests();
 		});
