@@ -1,10 +1,11 @@
 /* global suite, test, fixture, expect, suiteSetup, suiteTeardown, sinon, stubWhitelist */
 
 'use strict';
-	
+
 suite('<d2l-rubric>', function() {
 
 	var element, sandbox;
+
 	suiteSetup(function(done) {
 		sandbox = sinon.sandbox.create();
 		element = fixture('basic');

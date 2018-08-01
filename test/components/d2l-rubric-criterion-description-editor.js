@@ -4,7 +4,7 @@
 
 suite('<d2l-rubric-criterion-description-editor>', function() {
 
-	var element, sandbox;
+	var sandbox;
 
 	suiteSetup(function() {
 		sandbox = sinon.sandbox.create();
