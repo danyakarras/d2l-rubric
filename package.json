@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "polymer install --variants",
-    "install_attest": "npm install attest --registry http://agora.dequecloud.com/artifactory/api/npm/attest/",
+    "install_attest": "npm install attest --registry http://agora.dequecloud.com/artifactory/api/npm/attest/ && node remove_attest_From_project.js",
     "regenerate_data": "cd test/regen_api_data && node regenerate_api_data.js",
     "serve": "polymer analyze > analysis.json && polymer serve",
     "test": "npm run test:lint && npm run test:wct",
@@ -39,5 +39,6 @@
     "polymer-cli": "^1.7.7",
     "python-shell": "^0.5.0",
     "web-component-tester-istanbul": "^0.10.0"
-  }
+  },
+  "dependencies": {}
 }
