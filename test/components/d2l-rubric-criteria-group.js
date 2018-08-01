@@ -42,7 +42,7 @@ suite('<d2l-rubric-criteria-group>', function() {
 		});
 
 		test('d2l-rubric-criteria-groups ally checks',function(){
-			return ally_tests(300);
+			return ally_tests(500);
 		});
 	});
 });
