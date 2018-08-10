@@ -14,11 +14,13 @@
 	D2L.PolymerBehaviors.Rubric.TelemetryBehaviorImpl = {
 
 		_logEvent: function(id, eventType, eventBody, telemetryData) {
+			console.log('logging event, data is:', telemetryData)
 			if (!telemetryData || !telemetryData.endpoint) {
 				return;
 			}
 
 			var client = new window.d2lTelemetryBrowserClient.Client({ endpoint: telemetryData.endpoint });
+			console.log('client is:', client);
 
 			eventBody.setAction('Open')
 				.setObject(encodeURIComponent(id), 'Rubric', id)
@@ -30,6 +32,7 @@
 				.setType(eventType)
 				.setSourceId('rubric')
 				.setBody(eventBody);
+			console.log('event is:', event);
 
 			client.logUserEvent(event);
 		},

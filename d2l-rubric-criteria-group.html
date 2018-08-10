@@ -207,7 +207,9 @@
 					return;
 				}
 				// The first time that the entity loads, we send out an Open event
+				console.log('About to log telemetry. data is:', this.telemetryData);
 				if (!this._loaded && this.telemetryData && this.telemetryData.endpoint) {
+					console.log('inside group if statement. endpoint is:', this.telemetryData.endpoint);
 					var entityId = this._getSelfLink(entity);
 					this.logTelemetryEvent(entityId, false, this.telemetryData);
 					this._loaded = true;
